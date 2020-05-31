@@ -71,6 +71,9 @@ SPECIAL THANKS
 Start Bootstrap - Bare](https://startbootstrap.com/template-overviews/bare/)
 
 https://github.com/jr-cologne/gulp-starter-kit
+
 https://github.com/una/gulp-starter-env/blob/master/gulpfile.js
+
 https://coderwall.com/p/xyi9ww/simple-gulp-starter
+
 https://github.com/marcinkrzeminski/gulp-starter-kit
