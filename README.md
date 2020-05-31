@@ -24,7 +24,7 @@ Here is a list of the current features:
 
 ### 1. Clone repo
 ```
-git clone https://github.com/marcinkrzeminski/gulp-starter-kit.git
+git clone https://github.com/stnc/gulp-starter-kit-bootstrap.git
 ```
 
 ### 2. Go inside cloned repo
