@@ -80,9 +80,9 @@ gulp.task('images', () => {
 gulp.task('minify-css', () => {
   // Folder with files to minify
   return gulp.src([ 
-    'node_modules/bootstrap/dist/css/bootstrap.css'] ,
-    src_assets_folder + 'css/**/*.css',
-  )
+    'node_modules/bootstrap/dist/css/bootstrap.css',
+    src_assets_folder + 'css/**/*.css'
+  ])
   //The method pipe() allow you to chain multiple tasks together 
   //I execute the task to minify the files
  .pipe(minifyCss())
