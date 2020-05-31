@@ -1,6 +1,6 @@
 # Gulp Starter Kit For Bootsrap
 
-> A simple Gulp 4 Starter Kit for bootsrap 
+> A simple Gulp 4 Starter Kit for Bootstrap 
 
 ## Features / Use Cases
 This Gulp Starter Kit provides a simple way of setting up a modern web development environment.
@@ -66,4 +66,9 @@ For more information, take a look at the [package.json](package.json) file or vi
 
 # [Start Bootstrap - Bare](https://startbootstrap.com/template-overviews/bare/)
 
+SPECIAL THANKS 
+
 https://github.com/jr-cologne/gulp-starter-kit
+https://github.com/una/gulp-starter-env/blob/master/gulpfile.js
+https://coderwall.com/p/xyi9ww/simple-gulp-starter
+https://github.com/marcinkrzeminski/gulp-starter-kit

@@ -1,12 +1,10 @@
 {
-  "name": "@jr-cologne/create-gulp-starter-kit",
-  "version": "0.10.13-beta",
-  "description": "A simple Gulp 4 Starter Kit for modern web development.",
+  "name": "@stnc/gulp-starter-kit-bootstrap",
+  "version": "1.0.0",
+  "description": "A simple Gulp 4 Starter Kit for Bootstrap",
   "keywords": [
     "gulp",
     "gulp-starter-kit",
-    "scss",
-    "pug",
     "babel",
     "browser-sync",
     "autoprefixer",
@@ -25,14 +23,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://startbootstrap.com/templates/bare/"
+    "url": "https://github.com/stnc/gulp-starter-kit-bootstrap/"
   },
-  "author": "JR Cologne",
+  "author": "Selman Tunç",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jr-cologne/gulp-starter-kit/issues"
+    "url": "https://github.com/stnc/gulp-starter-kit-bootstrap/issues"
   },
-  "homepage": "https://github.com/jr-cologne/gulp-starter-kit",
+  "homepage": "https://selmantunc.com.tr",
   "devDependencies": {
     "@babel/core": "^7.10.0",
     "@babel/preset-env": "^7.10.0",

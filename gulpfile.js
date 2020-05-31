@@ -1,6 +1,4 @@
 
-//https://github.com/una/gulp-starter-env/blob/master/gulpfile.js
-//https://coderwall.com/p/xyi9ww/simple-gulp-starter
 
 //https://github.com/jr-cologne/gulp-starter-kit
 
@@ -8,7 +6,6 @@ const gulp                      = require('gulp'),
       del                       = require('del'),
       sourcemaps                = require('gulp-sourcemaps'),
       plumber                   = require('gulp-plumber'),
-      cleanCSS              = require('gulp-clean-css');
       autoprefixer              = require('gulp-autoprefixer'),
       minifyCss                 = require('gulp-clean-css'),
       babel                     = require('gulp-babel'),
@@ -88,7 +85,6 @@ gulp.task('minify-css', () => {
   )
   //The method pipe() allow you to chain multiple tasks together 
   //I execute the task to minify the files
- .pipe(cleanCSS())
  .pipe(minifyCss())
  .pipe(concat('style.min.css'))
  //I define the destination of the minified files with the method dest
