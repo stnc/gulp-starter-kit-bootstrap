@@ -1,1 +1,10 @@
-node_modules
+// Archives
+*.zip
+
+// Node / Bower
+node_modules/
+bower_components/
+
+
+dist/
+jquery/
