@@ -42,27 +42,23 @@ gulp.task('html', () => {
 
 
 gulp.task('js', () => {
- // return gulp.src([ src_assets_folder + 'js/**/*.js' ], { since: gulp.lastRun('js') })
-
-
   return gulp.src([
     'node_modules/jquery/dist/jquery.js',
     'node_modules/bootstrap/dist/js/bootstrap.js',
     src_assets_folder + 'js/**/*.js'
-    ],{ since: gulp.lastRun('js') })
+  ], { since: gulp.lastRun('js') })
 
 
     .pipe(plumber())
-    .pipe(webpack({
-      mode: 'production'
-    }))
+    // .pipe(webpack({
+    //   mode: 'production'
+    // }))
     .pipe(sourcemaps.init())
-      .pipe(babel({
-        presets: [ '@babel/env' ]
-      }))
-     .pipe(concat('app.min.js'))
-      .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
+    // .pipe(babel({
+    //   presets: ['@babel/env']
+    // }))
+    .pipe(concat('app.min.js'))
+    .pipe(uglify())
     .pipe(gulp.dest(dist_assets_folder + 'js'))
     .pipe(browserSync.stream());
 });
