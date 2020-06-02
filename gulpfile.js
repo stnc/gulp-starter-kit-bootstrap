@@ -15,8 +15,6 @@ const gulp                      = require('gulp'),
       imagemin                  = require('gulp-imagemin'),
       browserSync               = require('browser-sync').create(),
 
-      dependents                = require('gulp-dependents'),
-
       src_folder                = './src/',
       src_assets_folder         = src_folder + 'assets/',
       dist_folder               = './dist/',
