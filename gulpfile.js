@@ -130,7 +130,6 @@ gulp.task('watch', () => {
 
     src_assets_folder + 'css/**/*.css',
 
-
     src_assets_folder + 'js/**/*.js'
   ];
 
