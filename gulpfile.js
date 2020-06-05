@@ -1,32 +1,29 @@
 
+const gulp = require('gulp'),
+  del = require('del'),
+  sourcemaps = require('gulp-sourcemaps'),
+  plumber = require('gulp-plumber'),
 
-//https://github.com/jr-cologne/gulp-starter-kit
+  minifyCss = require('gulp-clean-css'),
+  babel = require('gulp-babel'),
+  webpack = require('webpack-stream'),
+  uglify = require('gulp-uglify'),
+  concat = require('gulp-concat'),
+  imagemin = require('gulp-imagemin'),
+  browserSync = require('browser-sync').create(),
+  src_folder = './src/',
+  src_assets_folder = src_folder + 'assets/',
+  dist_folder = './dist/',
+  dist_assets_folder = dist_folder + 'assets/',
+  node_modules_folder = './node_modules/',
+  dist_node_modules_folder = dist_folder + 'node_modules/',
 
-const gulp                      = require('gulp'),
-      del                       = require('del'),
-      sourcemaps                = require('gulp-sourcemaps'),
-      plumber                   = require('gulp-plumber'),
-      minifyCss                 = require('gulp-clean-css'),
-      babel                     = require('gulp-babel'),
-      webpack                   = require('webpack-stream'),
-      uglify                    = require('gulp-uglify'),
-      concat                    = require('gulp-concat'),
-      imagemin                  = require('gulp-imagemin'),
-      browserSync               = require('browser-sync').create(),
+  node_dependencies = Object.keys(require('./package.json').dependencies || {});
 
-      src_folder                = './src/',
-      src_assets_folder         = src_folder + 'assets/',
-      dist_folder               = './dist/',
-      dist_assets_folder        = dist_folder + 'assets/',
-      node_modules_folder       = './node_modules/',
-      dist_node_modules_folder  = dist_folder + 'node_modules/',
-
-      node_dependencies         = Object.keys(require('./package.json').dependencies || {});
-
-gulp.task('clear', () => del([ dist_folder ]));
+gulp.task('clear', () => del([dist_folder]));
 
 gulp.task('html', () => {
-  return gulp.src([ src_folder + '**/*.html' ], {
+  return gulp.src([src_folder + '**/*.html'], {
     base: src_folder,
     since: gulp.lastRun('html')
   })
@@ -43,7 +40,9 @@ gulp.task('js', () => {
     'node_modules/jquery/dist/jquery.js',
     'node_modules/bootstrap/dist/js/bootstrap.js',
     src_assets_folder + 'js/**/*.js'
-  ], { since: gulp.lastRun('js') })
+  ]
+  /*,  since: gulp.lastRun('js') }*/
+  )
 
 
     .pipe(plumber())
@@ -54,35 +53,40 @@ gulp.task('js', () => {
     // .pipe(babel({
     //   presets: ['@babel/env']
     // }))
-    .pipe(concat('app.min.js'))
     .pipe(uglify())
+    .pipe(concat('app.min.js'))
+
     .pipe(gulp.dest(dist_assets_folder + 'js'))
     .pipe(browserSync.stream());
 });
 
+
+
+
+//https://github.com/ViniciusGularte/MinifiedCssGulp/blob/master/Gulpfile.js
+gulp.task('minify-css', () => {
+  // Folder with files to minify
+  return gulp.src([
+    // 'node_modules/bootstrap/dist/css/bootstrap.css',
+    src_assets_folder + 'css/**/*.css'
+  ])
+
+
+    .pipe(minifyCss())
+    .pipe(concat('style.min.css'))
+
+    .pipe(gulp.dest(dist_assets_folder + 'css'))
+});
+
+
 gulp.task('images', () => {
-  return gulp.src([ src_assets_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico)' ], { since: gulp.lastRun('images') })
+  return gulp.src([src_assets_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico)'], { since: gulp.lastRun('images') })
     .pipe(plumber())
     .pipe(imagemin())
     .pipe(gulp.dest(dist_assets_folder + 'images'))
     .pipe(browserSync.stream());
 });
 
-
-//https://github.com/ViniciusGularte/MinifiedCssGulp/blob/master/Gulpfile.js
-gulp.task('minify-css', () => {
-  // Folder with files to minify
-  return gulp.src([ 
-    'node_modules/bootstrap/dist/css/bootstrap.css',
-    src_assets_folder + 'css/**/*.css'
-  ])
-  //The method pipe() allow you to chain multiple tasks together 
-  //I execute the task to minify the files
- .pipe(minifyCss())
- .pipe(concat('style.min.css'))
- //I define the destination of the minified files with the method dest
- .pipe(gulp.dest(dist_assets_folder + 'css'))
-});
 
 gulp.task('vendor', () => {
   if (node_dependencies.length === 0) {
@@ -100,14 +104,14 @@ gulp.task('vendor', () => {
     .pipe(browserSync.stream());
 });
 
-gulp.task('build', gulp.series('clear', 'html',   'js',  'minify-css','images', 'vendor'));
+gulp.task('build', gulp.series('clear', 'html', 'js', 'minify-css', 'images', 'vendor'));
 
-gulp.task('dev', gulp.series('html',  'minify-css','js'));
+gulp.task('dev', gulp.series('html', 'minify-css', 'js'));
 
 gulp.task('serve', () => {
   return browserSync.init({
     server: {
-      baseDir: [ 'dist' ]
+      baseDir: ['dist']
     },
     port: 3000,
     open: true
@@ -133,9 +137,9 @@ gulp.task('watch', () => {
     src_assets_folder + 'js/**/*.js'
   ];
 
-  gulp.watch('./styles/*.css', function(evt) {
+  gulp.watch('./styles/*.css', function (evt) {
     gulp.task('minify-css');
-    });
+  });
 
   gulp.watch(watch, gulp.series('dev')).on('change', browserSync.reload);
   gulp.watch(watchImages, gulp.series('images')).on('change', browserSync.reload);
