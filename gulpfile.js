@@ -63,11 +63,10 @@ gulp.task('js', () => {
 
 
 
-//https://github.com/ViniciusGularte/MinifiedCssGulp/blob/master/Gulpfile.js
 gulp.task('minify-css', () => {
   // Folder with files to minify
   return gulp.src([
-    // 'node_modules/bootstrap/dist/css/bootstrap.css',
+    'node_modules/bootstrap/dist/css/bootstrap.css',
     src_assets_folder + 'css/**/*.css'
   ])
 
