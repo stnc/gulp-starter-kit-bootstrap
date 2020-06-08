@@ -2,9 +2,6 @@
 
 > A simple Gulp 4 Starter Kit for Bootstrap 
 
-# BOWER PACKAGE BRANCH 
-
-https://github.com/stnc/gulp-starter-kit-bootstrap/tree/bowerPackage
 
 ## Features / Use Cases
 This Gulp Starter Kit provides a simple way of setting up a modern web development environment.
