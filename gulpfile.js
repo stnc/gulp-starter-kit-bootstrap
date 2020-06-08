@@ -1,15 +1,20 @@
 
+
+//https://github.com/jr-cologne/gulp-starter-kit
+//https://gist.github.com/crusat/ea7df56de21001762b10
+
 const gulp = require('gulp'),
   del = require('del'),
   sourcemaps = require('gulp-sourcemaps'),
   plumber = require('gulp-plumber'),
-
   minifyCss = require('gulp-clean-css'),
   babel = require('gulp-babel'),
   webpack = require('webpack-stream'),
   uglify = require('gulp-uglify'),
   concat = require('gulp-concat'),
   imagemin = require('gulp-imagemin'),
+  rename = require('gulp-rename'),
+
   browserSync = require('browser-sync').create(),
   src_folder = './src/',
   src_assets_folder = src_folder + 'assets/',
@@ -17,7 +22,6 @@ const gulp = require('gulp'),
   dist_assets_folder = dist_folder + 'assets/',
   node_modules_folder = './node_modules/',
   dist_node_modules_folder = dist_folder + 'node_modules/',
-
   node_dependencies = Object.keys(require('./package.json').dependencies || {});
 
 gulp.task('clear', () => del([dist_folder]));
@@ -37,13 +41,13 @@ gulp.task('html', () => {
 
 gulp.task('js', () => {
   return gulp.src([
-    // 'node_modules/jquery/dist/jquery.js',
-    'node_modules/bootstrap/dist/js/bootstrap.js',
+    // 'bower_components/jquery/dist/jquery.js', // if you need jquery, use  "bower install jquery"
+    'bower_components/bootstrap/dist/js/bootstrap.js', // if you need bootstrap, use  "bower install bootstrap"
     src_assets_folder + 'js/**/*.js'
   ]
   /*,  since: gulp.lastRun('js') }*/
   )
-
+  .pipe(sourcemaps.init())
 
     .pipe(plumber())
     // .pipe(webpack({
@@ -53,8 +57,11 @@ gulp.task('js', () => {
     // .pipe(babel({
     //   presets: ['@babel/env']
     // }))
+   
+
+    .pipe(concat('app.js'))
     .pipe(uglify())
-    .pipe(concat('app.min.js'))
+    .pipe(rename({suffix: '.min'})) // renaming file to myproject.min.js
 
     .pipe(gulp.dest(dist_assets_folder + 'js'))
     .pipe(browserSync.stream());
@@ -66,13 +73,15 @@ gulp.task('js', () => {
 gulp.task('minify-css', () => {
   // Folder with files to minify
   return gulp.src([
-    'node_modules/bootstrap/dist/css/bootstrap.css',
+    'bower_components/bootstrap/dist/css/bootstrap.css', // example with installed bootstrap package
     src_assets_folder + 'css/**/*.css'
   ])
 
+  .pipe(concat('style.css'))
+     .pipe(minifyCss({keepBreaks:false})) // minifying file
+     .pipe(rename({suffix: '.min'})) // renaming file to myproject.min.css
 
-    .pipe(minifyCss())
-    .pipe(concat('style.min.css'))
+
 
     .pipe(gulp.dest(dist_assets_folder + 'css'))
 });

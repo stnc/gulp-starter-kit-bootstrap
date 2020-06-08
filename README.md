@@ -37,7 +37,12 @@ cd gulp-starter-kit
 npm install
 ```
 
-### 4. Run default gulp task (will open browser window with live reload)
+### 4. Bower install bootstrap
+```
+bower install bootstrap
+```
+
+### 5. Run default gulp task (will open browser window with live reload)
 ```
 gulp
 ```
