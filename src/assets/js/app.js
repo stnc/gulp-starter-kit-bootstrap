@@ -1,4 +1,16 @@
 
+
+ $( document ).ready(function() {
+ 
+  $( "a" ).click(function( event ) {
+
+      alert( "Hello" );
+
+  });
+
+});
+
+/*
 import axios from 'axios';
 
 window.addEventListener('load', () => {
@@ -25,3 +37,4 @@ window.addEventListener('load', () => {
   setInterval(randomColor, 8000);
 
 });
+*/
