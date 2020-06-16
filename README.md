@@ -40,6 +40,11 @@ npm install
 
 ### 4. Bower install bootstrap
 ```
+
+npm install -g bower
+ 
+npm install -g gulp-cli
+ 
 bower install bootstrap
 ```
 
